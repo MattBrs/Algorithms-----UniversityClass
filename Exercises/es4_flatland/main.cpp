@@ -1,18 +1,20 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
-
+#include <set>
 using namespace std;
 
 struct triangle {
     int pos;
     bool direction;
 };
+set<int> sols;
+
+void find_solitary(vector<triangle> triangles);
 
 int main() {
     int size;
-    vector<triangle> triangles;  // se d -> true, se s -> false
-    vector<int> solutions;
+    vector<triangle> triangles;  // se s -> true, se d -> false
 
     ifstream in ("input.txt");
     ofstream out ("output.txt");
@@ -23,45 +25,42 @@ int main() {
         char temp;
         in >> temp;
 
-        triangle t {i, temp == 'd'};
+        triangle t {i, temp == 's'};
         triangles.push_back(t);
 
         cout << temp << " ";
     }
     cout << endl;
 
+    find_solitary(triangles);
 
-
-    for (int i = 1; i < size-1; ++i) {
-        vector<triangle> tempVect = triangles;
-        int tempIndex = i;
-        size_t tempSize = tempVect.size();
-
-        while (tempSize > 1 && tempIndex > -1 && tempIndex != tempSize) {
-            bool tempDir = tempVect[tempIndex].direction;
-
-            tempVect.erase(tempVect.begin() + tempIndex);
-            tempSize--;
-
-            if (tempSize == 1) {
-                solutions.push_back(tempVect.at(0).pos);
-                break;
-            }
-
-            if (!tempDir) { // se true e' destra, altrimenti sinistra
-                tempIndex--;
-            }
-        }
-        // cout << tempIndex << " ";
+    out << sols.size() << endl;
+    for (int solution : sols) {
+        out << solution << " ";
     }
+    out << endl;
 
-    // cout << endl << endl;
 
-    for (int i = 0; i < solutions.size(); ++i) {
-        cout << solutions[i] << " ";
-    }
-
-    cout << endl;
-
+    in.close();
+    out.close();
     return 0;
+}
+
+void find_solitary(vector<triangle> triangles) {
+    if (triangles.size() <= 1) {
+        // solutions.push_back(triangles[0].pos);
+        sols.insert(triangles[0].pos);
+        return;
+    }
+
+    for (int i = 1; i < triangles.size()-1; ++i) {
+        vector<triangle> localTriangles = triangles;
+        int currIndex = i + (-localTriangles[i].direction);
+        int nextIndex = i + (1 - (localTriangles[i].direction*2));
+        localTriangles.erase(localTriangles.begin() + nextIndex);
+        localTriangles.erase(localTriangles.begin() + currIndex);
+        find_solitary(localTriangles);
+    }
+
+
 }
