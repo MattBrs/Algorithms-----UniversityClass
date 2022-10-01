@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/TC Consulting/CLionProjects/uni/asd/es4_flatland
+# Install script for directory: C:/Users/TC Consulting/Documents/github/UniversityClass--AlgorithmsAndDatastructures/Exercises/es4_flatland
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "C:/Users/TC Consulting/CLionProjects/uni/asd/es4_flatland/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "C:/Users/TC Consulting/Documents/github/UniversityClass--AlgorithmsAndDatastructures/Exercises/es4_flatland/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

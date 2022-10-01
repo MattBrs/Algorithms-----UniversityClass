@@ -39,7 +39,7 @@ include CMakeFiles/rules.ninja
 #############################################
 # Logical path to working directory; prefix for absolute paths.
 
-cmake_ninja_workdir = C$:/Users/TC$ Consulting/CLionProjects/uni/asd/es4_flatland/cmake-build-debug/
+cmake_ninja_workdir = C$:/Users/TC$ Consulting/Documents/github/UniversityClass--AlgorithmsAndDatastructures/Exercises/es4_flatland/cmake-build-debug/
 # =============================================================================
 # Object build statements for EXECUTABLE target es4_flatland
 
@@ -49,7 +49,7 @@ cmake_ninja_workdir = C$:/Users/TC$ Consulting/CLionProjects/uni/asd/es4_flatlan
 
 build cmake_object_order_depends_target_es4_flatland: phony || CMakeFiles/es4_flatland.dir
 
-build CMakeFiles/es4_flatland.dir/main.cpp.obj: CXX_COMPILER__es4_flatland_Debug C$:/Users/TC$ Consulting/CLionProjects/uni/asd/es4_flatland/main.cpp || cmake_object_order_depends_target_es4_flatland
+build CMakeFiles/es4_flatland.dir/main.cpp.obj: CXX_COMPILER__es4_flatland_Debug C$:/Users/TC$ Consulting/Documents/github/UniversityClass--AlgorithmsAndDatastructures/Exercises/es4_flatland/main.cpp || cmake_object_order_depends_target_es4_flatland
   DEP_FILE = CMakeFiles\es4_flatland.dir\main.cpp.obj.d
   FLAGS = -g -std=gnu++11
   OBJECT_DIR = CMakeFiles\es4_flatland.dir
@@ -81,7 +81,7 @@ build es4_flatland.exe: CXX_EXECUTABLE_LINKER__es4_flatland_Debug CMakeFiles/es4
 # Utility command for edit_cache
 
 build CMakeFiles/edit_cache.util: CUSTOM_COMMAND
-  COMMAND = cmd.exe /C "cd /D "C:\Users\TC Consulting\CLionProjects\uni\asd\es4_flatland\cmake-build-debug" && "C:\Users\TC Consulting\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\222.4167.35\bin\cmake\win\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
+  COMMAND = cmd.exe /C "cd /D "C:\Users\TC Consulting\Documents\github\UniversityClass--AlgorithmsAndDatastructures\Exercises\es4_flatland\cmake-build-debug" && "C:\Users\TC Consulting\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\222.4167.35\bin\cmake\win\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
   DESC = No interactive CMake dialog available...
   restat = 1
 
@@ -92,7 +92,7 @@ build edit_cache: phony CMakeFiles/edit_cache.util
 # Utility command for rebuild_cache
 
 build CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
-  COMMAND = cmd.exe /C "cd /D "C:\Users\TC Consulting\CLionProjects\uni\asd\es4_flatland\cmake-build-debug" && "C:\Users\TC Consulting\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\222.4167.35\bin\cmake\win\bin\cmake.exe" --regenerate-during-build -S"C:\Users\TC Consulting\CLionProjects\uni\asd\es4_flatland" -B"C:\Users\TC Consulting\CLionProjects\uni\asd\es4_flatland\cmake-build-debug""
+  COMMAND = cmd.exe /C "cd /D "C:\Users\TC Consulting\Documents\github\UniversityClass--AlgorithmsAndDatastructures\Exercises\es4_flatland\cmake-build-debug" && "C:\Users\TC Consulting\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\222.4167.35\bin\cmake\win\bin\cmake.exe" --regenerate-during-build -S"C:\Users\TC Consulting\Documents\github\UniversityClass--AlgorithmsAndDatastructures\Exercises\es4_flatland" -B"C:\Users\TC Consulting\Documents\github\UniversityClass--AlgorithmsAndDatastructures\Exercises\es4_flatland\cmake-build-debug""
   DESC = Running CMake to regenerate build system...
   pool = console
   restat = 1
@@ -110,7 +110,7 @@ build es4_flatland: phony es4_flatland.exe
 # =============================================================================
 
 #############################################
-# Folder: C:/Users/TC Consulting/CLionProjects/uni/asd/es4_flatland/cmake-build-debug
+# Folder: C:/Users/TC Consulting/Documents/github/UniversityClass--AlgorithmsAndDatastructures/Exercises/es4_flatland/cmake-build-debug
 
 build all: phony es4_flatland.exe
 

@@ -55,7 +55,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "c:/Users/TC Consulting/CLionProjects/uni/asd/es4_flatland/cmake-build-debug"
+			"value" : "c:/Users/TC Consulting/Documents/github/UniversityClass--AlgorithmsAndDatastructures/Exercises/es4_flatland/cmake-build-debug"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -623,7 +623,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "C:/Users/TC Consulting/CLionProjects/uni/asd/es4_flatland"
+			"value" : "C:/Users/TC Consulting/Documents/github/UniversityClass--AlgorithmsAndDatastructures/Exercises/es4_flatland"
 		},
 		{
 			"name" : "CMAKE_INSTALL_PREFIX",
@@ -1239,7 +1239,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/TC Consulting/CLionProjects/uni/asd/es4_flatland/cmake-build-debug"
+			"value" : "C:/Users/TC Consulting/Documents/github/UniversityClass--AlgorithmsAndDatastructures/Exercises/es4_flatland/cmake-build-debug"
 		},
 		{
 			"name" : "es4_flatland_IS_TOP_LEVEL",
@@ -1263,7 +1263,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/TC Consulting/CLionProjects/uni/asd/es4_flatland"
+			"value" : "C:/Users/TC Consulting/Documents/github/UniversityClass--AlgorithmsAndDatastructures/Exercises/es4_flatland"
 		}
 	],
 	"kind" : "cache",
