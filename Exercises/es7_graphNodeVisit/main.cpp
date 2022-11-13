@@ -6,16 +6,16 @@
 
 using namespace std;
 
-void print_list(const vector<pair<int, int>> &list);
-void visit_node(const int original_node, int current_node, vector<pair<int, int>> arches_list, int &visit_count, vector<bool> &visitArray);
-vector<pair<int, int>> filter_pair_list(const vector<pair<int , int>> &list, int filter);
+void print_list(const vector<pair<short, short>> &list);
+void visit_node(const int original_node, int current_node, const vector<pair<short, short>> &arches_list, int &visit_count, vector<bool> &visitArray);
+vector<short> filter_pair_list(const vector<pair<short, short>> &list, int filter);
 
 int main (int argc, char *argv[]) {
   int nodes_number;
   int arches_number;
   int starting_node;
   int visit_count = 0;
-  vector<pair<int, int>> arch_list;
+  vector<pair<short, short>> arch_list;
 
   ifstream in ("input.txt");
   ofstream out ("output.txt");
@@ -41,31 +41,37 @@ int main (int argc, char *argv[]) {
   return 0;
 }
 
-void print_list(const vector<pair<int, int>> &list) {
+void print_list(const vector<pair<short, short>> &list) {
   for(auto item : list) {
     cout << item.first << " " << item.second << endl;
   }
 }
 
-void visit_node(const int original_node, int current_node, vector<pair<int, int>> arches_list, int &visit_count, vector<bool> &visit_array) {
-  cout << current_node << endl;
+void visit_node(const int original_node, int current_node, const vector<pair<short, short>> &arches_list, int &visit_count, vector<bool> &visit_array) {
+  // cout << current_node << endl;
   if (visit_array[current_node]) {
     return;
   }
 
   visit_array[current_node] = true;
   visit_count++;
-  vector<pair<int, int>> reachable_nodes = filter_pair_list(arches_list, current_node);
-  for(auto item : reachable_nodes) {
-    visit_node(original_node, item.second, arches_list, visit_count, visit_array);
+  // vector<short> reachable_nodes = filter_pair_list(arches_list, current_node);
+  // for(auto item : reachable_nodes) {
+  //   visit_node(original_node, item, arches_list, visit_count, visit_array);
+  // }
+
+  for(auto item: arches_list) {
+    if (item.first == current_node) {
+      visit_node(original_node, item.second, arches_list, visit_count, visit_array);
+    }
   }
 }
 
-vector<pair<int, int>> filter_pair_list(const vector<pair<int , int>> &list, int filter) {
-  vector<pair<int, int>> to_return;
+vector<short> filter_pair_list(const vector<pair<short, short>> &list, int filter) {
+  vector<short> to_return;
   for(auto var : list) {
     if (var.first == filter) {
-      to_return.push_back(var);
+      to_return.push_back(var.second);
     }
   } 
 
