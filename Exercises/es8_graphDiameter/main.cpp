@@ -2,82 +2,87 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <queue>
 
 using namespace std;
-void visit_node(const short &original_node, short current_node, const short &target_node, const vector<pair<short, short>> &arches_list, int &visit_count, vector<bool> visitArray, int local_count);
 
-void print_matrix(vector<vector<int>> matrix) {
-  for(auto x: matrix) {
-    for(auto y: x) {
-      cout << y << " ";
-    }
-    cout << endl;
+vector<short> get_visitable_nodes(const vector<pair<short, short>> &adj_list, short current_node);
+short bfs(const short &node_count, const vector<vector<short>> &adj_list); 
+
+void print_list(const vector<pair<short, short>> &list) {
+  for (auto item: list) {
+    cout << item.first << "-" << item.second << "  ";
   }
+
+  cout << endl;
 }
 
 int main (int argc, char *argv[]) {
   short node_count;
   int arch_count;
-  vector<pair<short, short>> arch_list;
 
   ifstream in ("input.txt");
   ofstream out ("output.txt");
 
   in >> node_count >> arch_count;
+  vector<vector<short>> adj_list(node_count);
   for (size_t i = 0; i < arch_count; i++) {
     short input1;
     short input2;
 
     in >> input1 >> input2;
-    arch_list.push_back({input1, input2});
-  }
-  vector<vector<int>> distance_matrix (node_count, vector<int>(node_count));
-  vector<bool> visit_array (node_count);
-  int max_distance = 0;
-
-  for (size_t i = 0; i < node_count; i++) {
-    for (size_t j = i; j < node_count; j++) {
-      int visit_count = 100000;
-      
-      // if (distance_matrix[j][i] != 0) {
-      //   distance_matrix[i][j] = distance_matrix[j][i];
-      // } else {
-        visit_node(0, i, j, arch_list, visit_count, visit_array, 0);
-        distance_matrix[i][j] = visit_count;
-        max_distance = max(visit_count, max_distance);
-      // }
-    }
+    adj_list[input1].push_back(input2);
+    adj_list[input2].push_back(input1);
   }
 
-   // print_matrix(distance_matrix); 
-   out << max_distance << endl;
-
+  short max_distance = bfs(node_count, adj_list);
+  out << max_distance << endl; 
   in.close();
   out.close();
   return 0;
 }
 
-void visit_node(const short &original_node, short current_node, const short &target_node, const vector<pair<short, short>> &arches_list, int &visit_count, vector<bool> visit_array, int local_count) {
-  if (visit_array[current_node]) {
-    return;
-  }
-  // cout << "current node -> " << current_node << endl;
-  
-  
-  if (current_node == target_node) {
-    // cout << "target reached  " << local_count << endl;
-    visit_count = min(local_count, visit_count); 
-    return;
-  }
+short bfs(const short &node_count, const vector<vector<short>> &adj_list) {
+  short max_depth = 0;
 
-  visit_array[current_node] = true;
-  local_count++;
+  for (short i = 0; i < node_count; i++) {
+    vector<pair<short, short>> traversed_nodes;  
+    vector<bool> visited(node_count, false);
+    if (!visited[i]) {
+      queue<pair<short, short>> node_queue;
+      visited[i] = true;
+      node_queue.push({i , 0});
 
-  for(auto item: arches_list) {
-    if (item.first == current_node) {
-      visit_node(original_node, item.second, target_node, arches_list, visit_count, visit_array, local_count);
-    } else if (item.second == current_node) {
-      visit_node(original_node, item.first, target_node, arches_list, visit_count, visit_array, local_count);
+      while (!node_queue.empty()) {
+        pair<short, short> current_node = node_queue.front();
+        node_queue.pop();
+        traversed_nodes.push_back(current_node);
+        int curr_depth = current_node.second;
+        curr_depth++;
+        for (auto node: adj_list[current_node.first]) {
+          if (!visited[node]) {
+            visited[node] = true;
+            node_queue.push({node, curr_depth});
+          }
+        }
+      }
+      max_depth = max(max_depth, traversed_nodes.back().second);
     }
   }
+  
+  return max_depth;
+}
+
+vector<short> get_visitable_nodes(const vector<pair<short, short>> &adj_list, short current_node) {
+  vector<short> visitable_nodes;
+   
+  for (auto arch: adj_list) {
+    if (arch.first == current_node) {
+      visitable_nodes.push_back(arch.second);
+    } else if (arch.second == current_node) {
+      visitable_nodes.push_back(arch.first);
+    }
+  } 
+
+  return visitable_nodes;
 }
