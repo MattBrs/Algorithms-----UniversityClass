@@ -2,17 +2,17 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <map>
 
 using namespace std;
 
 void visit_node(
   short current_node, 
   const short &target_node, 
-  const vector<vector<short>> &arches_list, 
-  int &visit_count, 
-  vector<bool> visitArray, 
-  int local_count,
-  int &path_count
+  const vector<vector<short>> &adj_list, 
+  vector<bool> visit_array, 
+  map<string, int> &path_map,
+  int local_count
 );
 
 int main (int argc, char *argv[]) {
@@ -35,12 +35,14 @@ int main (int argc, char *argv[]) {
     adj_list[input1].push_back(input2);
     adj_list[input2].push_back(input1);
   }
+
+
   vector<bool> visit_array (node_count, false);
-  int path_count = 0;
-  int visit_count = 100000;
-  visit_node(starting_node, target_node, adj_list, visit_count, visit_array, 0, path_count);
-  // cout << visit_count << " " << path_count << endl;
-  out << visit_count << " " << path_count << endl;
+  map<string, int> distance_map;
+  visit_node(starting_node, target_node, adj_list, visit_array, distance_map, 0);
+
+  out << distance_map.begin()->first << " " << distance_map.begin()->second << endl;
+
   in.close();
   out.close();
   return 0;
@@ -50,28 +52,20 @@ void visit_node(
   short current_node, 
   const short &target_node, 
   const vector<vector<short>> &adj_list, 
-  int &visit_count, 
   vector<bool> visit_array, 
-  int local_count,
-  int &path_count
+  map<string, int> &path_map,
+  int local_count
 ) {
-
   if (visit_array[current_node]) {
     return;
   }
   
   if (current_node == target_node) {
-    if (local_count == visit_count) {
-      path_count++;
-      return;
-    }
+    path_map[to_string(local_count)]++;
+    return;
+  }
 
-    if (local_count < visit_count) {
-      visit_count = local_count;
-      path_count = 1;
-      return;
-    }
-
+  if (!path_map.empty() && local_count > stoi(path_map.begin()->first)) {
     return;
   }
 
@@ -79,6 +73,6 @@ void visit_node(
   local_count++;
 
   for(auto item: adj_list[current_node]) {
-      visit_node(item, target_node, adj_list, visit_count, visit_array, local_count, path_count);
+      visit_node(item, target_node, adj_list, visit_array, path_map, local_count);
     }
   }
